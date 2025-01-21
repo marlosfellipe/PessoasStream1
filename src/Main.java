@@ -30,6 +30,7 @@ public class Main {
                 new Pessoa("Maria Joaquina", 15, "São Paulo")
         );
 
+        // Aqui eu usei stream para agrupar quantas pessoas possui em cada cidade
         Map<String, Long> contagemPorCidade = pessoas.stream()
                 .collect(Collectors.groupingBy(Pessoa::getCidade, Collectors.counting()));
 
@@ -40,7 +41,8 @@ public class Main {
 
         System.out.println("\n");
 
-
+        //Aqui eu usei stream para informar todas as cidades e todas as pessoas
+        // que possui dentro daquela cidade
         Map<String, List<Pessoa>> pessoasPorCidade = pessoas.stream()
                 .collect(Collectors.groupingBy(Pessoa::getCidade));
 
@@ -50,7 +52,8 @@ public class Main {
             System.out.println();
         });
 
-
+        //Aqui usei stream para apenas selecionar pessoas maiores de 18 anos, caso queira
+        //Filtrar para pessoas abaixo dos 18, só realizar a mudança <=18.
         List<String> maioresDeIdade = pessoas.stream()
                 .filter(p -> p.getIdade() >= 18)
                 .sorted(Comparator.comparingInt(Pessoa::getIdade))
